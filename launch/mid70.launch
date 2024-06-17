@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="livox_to_pointcloud" type="convert_points.py" name="mid70_converter" output="screen">
+    <param name="input_topic" value="/mid70/livox/lidar" />
+    <param name="output_topic" value="/mid70/livox/pointcloud2" />
+    <param name="node_name" value="mid70_converter_node" />
+  </node>
+</launch>

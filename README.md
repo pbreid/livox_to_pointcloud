@@ -14,7 +14,7 @@ This project contains a ROS node that converts custom point cloud messages (`Cus
 
     ```bash
     cd ~/catkin_ws/src
-    git clone https://github.com/pbreid/livox_to_pointcloud.git
+    git clone https://github.com/your-repo/livox_to_pointcloud.git
     ```
 
 2. Build the workspace:
@@ -34,32 +34,16 @@ This project contains a ROS node that converts custom point cloud messages (`Cus
 
 ### Running Directly from Python
 
-You can run the converter script directly from the command line, specifying the input and output topics.
+You can run the converter script directly from the command line, specifying the input and output topics, and a unique node name.
 
 ```bash
-python3 src/pointConverter/test.py --input_topic /custom_pointcloud_laser1 --output_topic /pointcloud2_laser1 --node_name laser1_converter_node
-python3 src/pointConverter/test.py --input_topic /custom_pointcloud_laser2 --output_topic /pointcloud2_laser2 --node_name laser2_converter_node
+python3 src/livox_to_pointcloud/convert_points.py --input_topic /custom_pointcloud_laser1 --output_topic /pointcloud2_laser1 --node_name laser1_converter_node
+python3 src/livox_to_pointcloud/convert_points.py --input_topic /custom_pointcloud_laser2 --output_topic /pointcloud2_laser2 --node_name laser2_converter_node
 ```
 
-Command-Line Arguments
---input_topic: The topic to subscribe to for the custom point cloud message (CustomMsg).
---output_topic: The topic to publish the PointCloud2 message.
+OR
 
-
-Running from a ROS Launch File
-You can use a ROS launch file to start multiple instances of the converter node with different topics.
-
-Create a launch file named multi_laser.launch in your launch directory:
-```
-<launch>
-  <node pkg="pointConverter" type="test.py" name="laser1_converter" output="screen" args="--input_topic /custom_pointcloud_laser1 --output_topic /pointcloud2_laser1 --node_name laser1_converter_node" />
-  <node pkg="pointConverter" type="test.py" name="laser2_converter" output="screen" args="--input_topic /custom_pointcloud_laser2 --output_topic /pointcloud2_laser2 --node_name laser2_converter_node" />
-  <!-- Add more nodes as needed -->
-</launch>
-```
-
-Run the launch file:
-
-```
-roslaunch pointConverter multi_laser.launch
+```bash
+roslaunch livox_to_pointcloud avia.launch
+roslaunch livox_to_pointcloud mid70.launch
 ```

@@ -1,8 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import os
-import argparse
 import rospy
 import struct
 from sensor_msgs.msg import PointCloud2, PointField
@@ -41,16 +40,13 @@ def callback(custom_msg):
     pointcloud2_pub.publish(pointcloud2_msg)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Convert custom point cloud message to PointCloud2.')
-    parser.add_argument('--input_topic', type=str, required=True, help='Input topic for custom point cloud message')
-    parser.add_argument('--output_topic', type=str, required=True, help='Output topic for PointCloud2 message')
-    parser.add_argument('--node_name', type=str, required=True, help='Unique name for the ROS node')
-    args = parser.parse_args()
+    rospy.init_node('custom_to_pointcloud2_node')
 
-    rospy.init_node(args.node_name)
+    input_topic = rospy.get_param('~input_topic')
+    output_topic = rospy.get_param('~output_topic')
+    node_name = rospy.get_param('~node_name')
 
-    pointcloud2_pub = rospy.Publisher(args.output_topic, PointCloud2, queue_size=10)
-    rospy.Subscriber(args.input_topic, CustomMsg, callback)
+    pointcloud2_pub = rospy.Publisher(output_topic, PointCloud2, queue_size=10)
+    rospy.Subscriber(input_topic, CustomMsg, callback)
 
     rospy.spin()
-

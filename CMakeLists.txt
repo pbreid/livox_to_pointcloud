@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(custom_msgs)
+project(livox_to_pointcloud)
 
 find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
   std_msgs
   message_generation
 )
@@ -21,3 +23,6 @@ catkin_package(
   CATKIN_DEPENDS message_runtime std_msgs
 )
 
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)

@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="livox_to_pointcloud" type="convert_points.py" name="avia_converter" output="screen">
+    <param name="input_topic" value="/avia/livox/lidar" />
+    <param name="output_topic" value="/avia/livox/pointcloud2" />
+    <param name="node_name" value="avia_converter_node" />
+  </node>
+</launch>
