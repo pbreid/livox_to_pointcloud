@@ -47,3 +47,14 @@ OR
 roslaunch livox_to_pointcloud avia.launch
 roslaunch livox_to_pointcloud mid70.launch
 ```
+
+
+
+
+
+AND a newer way of doing the same diretly with bag files. this doesn't stuff up timing.
+
+Example of how to use livox_to_
+```bash
+rosrun livox_to_pointcloud livox_to_pointcloud2.py _input_bag:=wblock_forward_back.bag _output_bag:=wblock_forward_back-fixed.bag _input_topic1:=/avia/livox/lidar _output_topic1:=/avia/livox/pointcloud2 _input_topic2:=/mid70/livox/lidar _output_topic2:=/mid70/livox/pointcloud2
+```
